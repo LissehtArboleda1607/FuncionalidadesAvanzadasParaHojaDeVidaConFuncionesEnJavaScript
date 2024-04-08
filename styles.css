@@ -80,3 +80,13 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background-color: #0055a4;
 }
+.container {
+    text-align: center;
+    margin-top: 100px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
