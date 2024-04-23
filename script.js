@@ -2,19 +2,22 @@ console.log("Hoja de Vida Interactiva Cargada");
 
 // Carga inicial de certificaciones
 const certificaciones = ["Curso A", "Curso B", "Taller C", "Seminario D"];
+window.onload = () => {
+    mostrarCertificaciones();
+};
 
-function mostrarCertificaciones() {
-    let ul = document.getElementById('listaCertificaciones');
-    for (let i = 0; i < certificaciones.length; i++) {
-        let li = document.createElement('li');
-        li.textContent = certificaciones[i];
+const mostrarCertificaciones = () => {
+    const ul = document.getElementById('listaCertificaciones');
+    certificaciones.forEach(certificacion => {
+        const li = document.createElement('li');
+        li.textContent = certificacion;
         ul.appendChild(li);
-    }
-}
+    });
+};
 
 // Mostrar proyectos anteriores
-document.getElementById('verProyectosAnteriores').addEventListener('click', function() {
-    let numProyectos = parseInt(prompt("¿Cuántos proyectos deseas ver?"));
+document.getElementById('verProyectosAnteriores').addEventListener('click', () => {
+    const numProyectos = parseInt(prompt("¿Cuántos proyectos deseas ver?"));
     if (!isNaN(numProyectos) && numProyectos > 0) {
         mostrarProyectosAnteriores(numProyectos);
     } else {
@@ -23,32 +26,26 @@ document.getElementById('verProyectosAnteriores').addEventListener('click', func
 });
 
 const proyectosAnteriores = ["Proyecto 1", "Proyecto 2", "Proyecto 3", "Proyecto 4", "Proyecto 5"];
-
-function mostrarProyectosAnteriores(numProyectos) {
-    let ul = document.getElementById('proyectosAnteriores');
+const mostrarProyectosAnteriores = (numProyectos) => {
+    const ul = document.getElementById('proyectosAnteriores');
     ul.innerHTML = '';
-    for (let i = 0; i < numProyectos && i < proyectosAnteriores.length; i++) {
-        let li = document.createElement('li');
-        li.textContent = proyectosAnteriores[i];
+    proyectosAnteriores.slice(0, numProyectos).forEach(proyecto => {
+        const li = document.createElement('li');
+        li.textContent = proyecto;
         ul.appendChild(li);
-    }
-}
+    });
+};
 
 // Añadir habilidades
-document.getElementById('addSkill').addEventListener('click', function() {
-    let habilidad = prompt("Ingrese la nueva habilidad:");
-    let nivel = prompt("Ingrese el nivel de dominio:");
-
+document.getElementById('addSkill').addEventListener('click', () => {
+    const habilidad = prompt("Ingrese la nueva habilidad:");
+    const nivel = prompt("Ingrese el nivel de dominio:");
     if (habilidad && nivel) {
-        let tbody = document.getElementById('listaHabilidades');
-        let tr = document.createElement('tr');
+        const tbody = document.getElementById('listaHabilidades');
+        const tr = document.createElement('tr');
         tr.innerHTML = `<td>${habilidad}</td><td>${nivel}</td>`;
         tbody.appendChild(tr);
     } else {
         alert("Por favor, ingrese información válida para la habilidad y el nivel.");
     }
 });
-
-window.onload = function() {
-    mostrarCertificaciones();
-};
